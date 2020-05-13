@@ -1,0 +1,31 @@
+
+<div class="app-body">
+  <app-sidebar #appSidebar [fixed]="true" [display]="'lg'" [minimized]="sidebarMinimized" (minimizedChange)="toggleMinimize($event)">
+    <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="appSidebar.minimized"></app-sidebar-nav>
+    <app-sidebar-minimizer></app-sidebar-minimizer>
+  </app-sidebar>
+  <!-- Main content -->
+  <main class="main">
+   <!-- Select Country -->
+    <div class="row country">
+      <div class="col-md-12">
+        <select name="selected_country" id="" (change)="selectedCountry()" [(ngModel)]="selected_country">
+          <option value="" disabled>Select a country</option>
+          <option *ngFor="let item of country_data" value="{{ item.alpha3Code }}">{{ item.name }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 crumbs" >
+        {{ breadcrumb }}
+      </div>
+    </div>
+    
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div><!-- /.container-fluid -->
+  </main>
+ 
+</div>
+
